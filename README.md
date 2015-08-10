@@ -1,38 +1,28 @@
-# zfsScripts
+## zfsScripts ##
 Misc ZFS maintenance scripts
 
-poolStats
-=========
-
+### poolStats ###
 Prints out somewhat useful status on a given ZFS pool. Originally designed to be shown through geekTool.
+    ./poolStats.sh ZFS
 
-USAGE: ./poolStats.sh ZFS
-
-scrub
-=====
+### scrub ###
 Starts a scrub of a given ZFS pool. Designed to be run through launchd, and scheduled automatically.
+    ./scrub.sh ZFS
 
-Usage: ./scrub.sh ZFS
-
-snapshotCycle
-=============
+### snapshotCycle ###
 Generates a snapshot on a given ZFS zvol and increments the counter on existing snapshots, to keep X number in rotation. Removes the oldest. Taken in the Pool and ZVol, and a basename to name the snaps.
 
-USAGE: ./snapshotCycle.sh <DAYS> <POOLNAME> <FILESYSTEM> <SNAPSHOT BASE NAME>eg. ./snapshotCycle.sh 14 ZFS_POOL Users snap
+    ./snapshotCycle.sh <DAYS> <POOLNAME> <FILESYSTEM> <SNAPSHOT BASE NAME>eg. ./snapshotCycle.sh 14 ZFS_POOL Users snap
 
 
-update
-======
-
+### update ###
 Runs a source update on an OpenZFS on OSX pool. Completely removed an existing installation, then builds and installs from scratch. Displays steps, but keeps all output in a log.
 
-Usage: ./update.sh ZFS
+    ./update.sh ZFS
 
 
-zfsStatus
-=========
-
+### zfsStatus ###
 Shows ZFS status and volume stats - designed to be run through geekTool.
 
-Usage: ./zfsStatus
+    ./zfsStatus
 
