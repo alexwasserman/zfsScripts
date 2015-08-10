@@ -1,8 +1,13 @@
 ## zfsScripts ##
 Misc ZFS maintenance scripts, written for my personal usage, currently on OpenZFS on OSX.
 
+### automount ###
+Run at login it checks to see if a ZFS pool is mounted and if not runs an import for it. Loops the check every 5 seconds. Checks if the O3X kext is loaded before importing.
+
+    ./automount.sh ZFS
+
 ### poolStats ###
-Prints out somewhat useful status on a given ZFS pool. Originally designed to be shown through geekTool.
+Prints out somewhat useful status on a given ZFS pool. Originally designed to be shown through geekTool, eg. http://www.macosxtips.co.uk/geeklets/system/basic-zfs-status/
 
     ./poolStats.sh ZFS
 
