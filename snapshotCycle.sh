@@ -1,5 +1,7 @@
 #!/bin/bash
 
+PATH=$PATH:/usr/local/bin/:/usr/sbin/
+
 usage() {
 	echo "USAGE: ./snapshotCycle.sh <DAYS> <POOLNAME> <FILESYSTEM> <SNAPSHOT BASE NAME>"
 	echo "DAYS must be a positive integer"
@@ -48,7 +50,7 @@ echo " - Keeping $DAYS days of snapshots"
 
 # Remove oldest
 echo " - Removing oldest snapshot"
-/usr/local/bin/zfs destroy ${FSBASE}${DAYS}
+zfs destroy ${FSBASE}${DAYS}
 checkStatus DestroyOldest
 # echo " - Faking it: zfs destroy ${FSBASE}${DAYS}"
 
@@ -58,15 +60,15 @@ let COUNTDAY=${DAYS}-1
 while [  "$COUNTDAY" -ge 0 ]; do
 	let NEWDAY=COUNTDAY+1
 	echo "   - Renaming $COUNTDAY"
-	/usr/bin/local/zfs rename ${FSBASE}${COUNTDAY} ${FSBASE}${NEWDAY}
-	/usr/bin/local/zfs get name,creation,used,referenced,compressratio ${FSBASE}${NEWDAY}
+	zfs rename ${FSBASE}${COUNTDAY} ${FSBASE}${NEWDAY}
+	zfs get name,creation,used,referenced,compressratio ${FSBASE}${NEWDAY}
 	checkStatus IncrementingExisting
         let COUNTDAY=COUNTDAY-1 
 done
 
 # Create new one
 echo " - Creating today's snapshot"
-/usr/local/bin/zfs snapshot ${FSBASE}0
+zfs snapshot ${FSBASE}0
 checkStatus TodaysSnapshot
 
 echo ""
