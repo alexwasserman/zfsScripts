@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export PATH=/usr/sbin:$PATH
+export PATH=/usr/local/bin:$PATH
 
 export POOL=$1
 export STATE="UNKNOWN"

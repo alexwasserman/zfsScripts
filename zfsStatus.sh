@@ -1,5 +1,5 @@
 #!/bin/bash
-export PATH=$PATH:/usr/sbin/
+export PATH=$PATH:/usr/local/bin/
 date
 echo ""
 zpool status ZFS

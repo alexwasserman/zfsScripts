@@ -5,7 +5,7 @@ export POOL=$1
 echo "Starting scrub of: " $POOL
 echo "Time is: " `date`
 
-/usr/sbin/zpool scrub $POOL
+/usr/local/bin/zpool scrub $POOL
 
 if [ $? -gt 0 ]; 
 	then

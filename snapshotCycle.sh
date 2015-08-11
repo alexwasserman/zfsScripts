@@ -48,7 +48,7 @@ echo " - Keeping $DAYS days of snapshots"
 
 # Remove oldest
 echo " - Removing oldest snapshot"
-/usr/sbin/zfs destroy ${FSBASE}${DAYS}
+/usr/local/bin/zfs destroy ${FSBASE}${DAYS}
 checkStatus DestroyOldest
 # echo " - Faking it: zfs destroy ${FSBASE}${DAYS}"
 
@@ -58,15 +58,15 @@ let COUNTDAY=${DAYS}-1
 while [  "$COUNTDAY" -ge 0 ]; do
 	let NEWDAY=COUNTDAY+1
 	echo "   - Renaming $COUNTDAY"
-	/usr/sbin/zfs rename ${FSBASE}${COUNTDAY} ${FSBASE}${NEWDAY}
-	/usr/sbin/zfs get name,creation,used,referenced,compressratio ${FSBASE}${NEWDAY}
+	/usr/bin/local/zfs rename ${FSBASE}${COUNTDAY} ${FSBASE}${NEWDAY}
+	/usr/bin/local/zfs get name,creation,used,referenced,compressratio ${FSBASE}${NEWDAY}
 	checkStatus IncrementingExisting
         let COUNTDAY=COUNTDAY-1 
 done
 
 # Create new one
 echo " - Creating today's snapshot"
-/usr/sbin/zfs snapshot ${FSBASE}0
+/usr/local/bin/zfs snapshot ${FSBASE}0
 checkStatus TodaysSnapshot
 
 echo ""
